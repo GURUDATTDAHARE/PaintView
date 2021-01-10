@@ -1,33 +1,38 @@
-package com.gurudattdahare.paint;
+package com.gurudattdahare.paintview;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaintView extends View {
+public class example extends View {
+
     private Paint paint;
     private Path path;
     private float currntBrushsize=10f;
-    private List<Modal> list=new ArrayList<>();
-    private float h;
-    private float w;
-    public PaintView(Context context) {
+    private List<modal> list=new ArrayList<>();
+    public example(Context context) {
         super(context);
         guru();
     }
 
-    public PaintView(Context context, @Nullable AttributeSet attrs) {
+    public example(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         guru();
     }
@@ -39,19 +44,18 @@ public class PaintView extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         path=new Path();
-        AddList();
-
+      AddList();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawLine(0,h,w,h,paint);
-
-        Modal modal;
+        modal modal;
         for (int i=0;i<list.size();i++){
-            modal=list.get(i);
+             modal=list.get(i);
             canvas.drawPath(modal.getPath(),modal.getPaint());
         }
+
+        //super.onDraw(canvas);
     }
 
     @Override
@@ -63,22 +67,14 @@ public class PaintView extends View {
                 path.moveTo(x,y);
                 invalidate();
                 break;
-             case MotionEvent.ACTION_MOVE:
-                 path.lineTo(x,y);
-                 invalidate();
-                 break;
+            case MotionEvent.ACTION_MOVE:
+                path.lineTo(x,y);
+                invalidate();
+                break;
         }
         return true;
     }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        h=getMeasuredHeight();
-        w=getMeasuredWidth();
-    }
-
-    public void NewPaint(float size, int color){
+    public void NewPaint(float size,int color){
         paint=new Paint();
         paint.setColor(color);
         paint.setStrokeWidth(size);
@@ -89,7 +85,7 @@ public class PaintView extends View {
         AddList();
     }
     public void AddList(){
-        Modal modal=new Modal(paint,path);
+        modal modal=new modal(paint,path);
         list.add(modal);
     }
     public void red(){
@@ -112,8 +108,8 @@ public class PaintView extends View {
     }
     public void green(){
 
-       path=new Path();
-       NewPaint(currntBrushsize,Color.GREEN);
+        path=new Path();
+        NewPaint(currntBrushsize,Color.GREEN);
         AddList();
     }
     public void black(){
@@ -135,4 +131,5 @@ public class PaintView extends View {
         list.clear();
         invalidate();
     }
+
 }
