@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <com.gurudattdahare.paintview.V
+        <com.gurudattdahare.paintview.V
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
         <Button
             android:id="@+id/red"
             android:layout_width="match_parent"
@@ -27,53 +27,47 @@
             android:background="#EE004B" />
 
         <Button
+            android:id="@+id/blue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/blue"
             android:background="#00CAEE" />
 
         <Button
+            android:id="@+id/green"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/green"
             android:background="#34EE00" />
 
         <Button
+            android:id="@+id/yellow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/yellow"
             android:background="#EEC600" />
 
         <Button
+            android:id="@+id/black"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/black"
             android:background="#0C0910" />
 
         <Button
+            android:id="@+id/eresor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/eresor"
             android:background="#FBFBFB" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/size"
             android:background="@color/colorPrimary" />
 
         <Button
+            android:id="@+id/clear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/clear"
             android:background="@color/colorPrimary" />
 
+
     </com.gurudattdahare.paintview.V>
-
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

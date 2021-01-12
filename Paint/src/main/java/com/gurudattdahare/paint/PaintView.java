@@ -19,6 +19,7 @@ public class PaintView extends View {
     private Paint paint;
     private Path path;
     private float currntBrushsize=10f;
+    private int currentColor=Color.BLACK;
     private List<Modal> list=new ArrayList<>();
     private float h;
     private float w;
@@ -78,13 +79,15 @@ public class PaintView extends View {
         w=getMeasuredWidth();
     }
 
-    public void NewPaint(float size, int color){
+    public void NewPaint(float size,int color){
+        currentColor=color;
         paint=new Paint();
-        paint.setColor(color);
+        paint.setColor(currentColor);
         paint.setStrokeWidth(size);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
+
         path=new Path();
         AddList();
     }
@@ -122,13 +125,22 @@ public class PaintView extends View {
         NewPaint(currntBrushsize,Color.BLACK);
         AddList();
     }
+    public void Brown(){
+        path=new Path();
+        NewPaint(currntBrushsize,Integer.valueOf(Color.parseColor("#964B00")));
+        AddList();
+    }
     public void eresor(){
 
         path=new Path();
         NewPaint(currntBrushsize,Color.WHITE);
         AddList();
     }
-    public void brushsize(){
+    public void brushsize(Float size){
+        path =new Path();
+        currntBrushsize=size;
+        NewPaint(currntBrushsize,currentColor);
+        AddList();
 
     }
     public void clear(){

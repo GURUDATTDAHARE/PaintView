@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        Button b5=findViewById(R.id.black);
        Button b6=findViewById(R.id.eresor);
        Button b7 =findViewById(R.id.clear);
+       Button b8=findViewById(R.id.size);
        b.setOnClickListener(this);
        b2.setOnClickListener(this);
        b3.setOnClickListener(this);
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        b5.setOnClickListener(this);
        b6.setOnClickListener(this);
        b7.setOnClickListener(this);
+       b8.setOnClickListener(this);
 
 
     }
@@ -57,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case  R.id.clear:
                 e.clear();
                 break;
+                case R.id.size:
+              e.Brown();
+            break;
         }
     }
 }

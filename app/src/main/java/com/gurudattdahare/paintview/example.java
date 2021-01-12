@@ -5,14 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,10 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class example extends View {
-
+    private int idOFSeek;
+    private SeekBar seekBar;
     private Paint paint;
     private Path path;
     private float currntBrushsize=10f;
+    private int currentColor=Color.BLACK;
     private List<modal> list=new ArrayList<>();
     public example(Context context) {
         super(context);
@@ -44,6 +49,7 @@ public class example extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         path=new Path();
+        setBackgroundColor(Color.WHITE);
       AddList();
     }
 
@@ -75,12 +81,14 @@ public class example extends View {
         return true;
     }
     public void NewPaint(float size,int color){
+        currentColor=color;
         paint=new Paint();
-        paint.setColor(color);
+        paint.setColor(currentColor);
         paint.setStrokeWidth(size);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
+
         path=new Path();
         AddList();
     }
@@ -118,13 +126,24 @@ public class example extends View {
         NewPaint(currntBrushsize,Color.BLACK);
         AddList();
     }
+    public void Brown(){
+        path=new Path();
+        NewPaint(currntBrushsize,Integer.valueOf(Color.parseColor("#964B00")));
+        AddList();
+    }
     public void eresor(){
 
         path=new Path();
         NewPaint(currntBrushsize,Color.WHITE);
         AddList();
     }
-    public void brushsize(){
+    public void brushsize(Float size){
+        path =new Path();
+        currntBrushsize=size;
+        NewPaint(currntBrushsize,currentColor);
+        AddList();
+
+
 
     }
     public void clear(){

@@ -2,10 +2,30 @@ package com.gurudattdahare.paint;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 public class PaintLayout extends ViewGroup {
+    private SeekBar seekBar;
+    private SeekBar.OnSeekBarChangeListener listener=new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            paintView.brushsize(Float.valueOf(progress));
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+    private PaintView paintView;
     public PaintLayout(Context context) {
         super(context);
     }
@@ -38,7 +58,16 @@ public class PaintLayout extends ViewGroup {
                         child.layout(startX,startY,leftPadding+childwidth,topPadding+childhight);
                          startX=startX+width/25;
                          startY=startY+childhight+hight/48;
+                         paintView=findViewById(child.getId());
                   }else {
+                      if(i==count-1)
+                      {
+                          LayoutInflater.from(getContext()).inflate(R.layout.my_seekbaar_layout,this);
+                          seekBar=findViewById(R.id.my_seekBar);
+                          seekBar.measure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.AT_MOST),MeasureSpec.makeMeasureSpec(100,MeasureSpec.AT_MOST));
+                          seekBar.layout(0,30,width,30+100);
+                          seekBar.setOnSeekBarChangeListener(listener);
+                      }
                       child.measure(MeasureSpec.makeMeasureSpec(2*width/25, MeasureSpec.AT_MOST),
                               MeasureSpec.makeMeasureSpec(2*hight/48, MeasureSpec.AT_MOST));
                           int childhight=child.getMeasuredHeight();
