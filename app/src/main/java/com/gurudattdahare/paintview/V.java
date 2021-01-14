@@ -1,20 +1,15 @@
 package com.gurudattdahare.paintview;
-
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.SeekBar;
-
-import com.gurudattdahare.paint.PaintView;
-
 public class V extends ViewGroup {
     private SeekBar seekBar;
+    private example example;
+    private Boolean visibleORnot=false;
     private SeekBar.OnSeekBarChangeListener listener=new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -31,15 +26,22 @@ public class V extends ViewGroup {
 
         }
     };
-    private example example;
     public V(Context context) {
         super(context);
-       // LayoutInflater.from(context).inflate(R.layout.test,this);
+        guru(context);
     }
 
     public V(Context context, AttributeSet attrs) {
         super(context, attrs);
-      //  LayoutInflater.from(context).inflate(R.layout.test,this);
+      guru(context);
+    }
+    public void guru(Context context){
+        example=new example(context);
+        addView(example);
+        LayoutInflater.from(getContext()).inflate(R.layout.test,this);
+        seekBar=findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(listener);
+        seekBar.setVisibility(INVISIBLE);
     }
 
     @Override
@@ -68,17 +70,14 @@ public class V extends ViewGroup {
                     child.layout(startX,startY,leftPadding+childwidth,topPadding+childhight);
                     startX=startX+width/25;
                     startY=startY+childhight+hight/48;
-                    example=findViewById(child.getId());
+                  //  example=findViewById(child.getId());
 
-                }else {
-                    if(i==count-1)
+                }else if(i==1)
                     {
-                        LayoutInflater.from(getContext()).inflate(R.layout.test,this);
-                        seekBar=findViewById(R.id.seekBar);
                         seekBar.measure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.AT_MOST),MeasureSpec.makeMeasureSpec(100,MeasureSpec.AT_MOST));
                         seekBar.layout(0,30,width,30+100);
-                        seekBar.setOnSeekBarChangeListener(listener);
                     }
+                else {
                         child.measure(MeasureSpec.makeMeasureSpec(2 * width / 25, MeasureSpec.AT_MOST),
                                 MeasureSpec.makeMeasureSpec(2 * hight / 48, MeasureSpec.AT_MOST));
                         int childhight = child.getMeasuredHeight();
@@ -90,4 +89,36 @@ public class V extends ViewGroup {
             }
         }
     }
+     public void Red()
+     {
+         example.red();
+     }
+     public void Blue(){
+         example.blue();
+     }
+     public void Yellow(){
+         example.yellow();
+     }
+     public void Eresor(){
+        example.eresor();
+
+     }
+     public void BrushSize(){
+        if (!visibleORnot) {
+            seekBar.setVisibility(VISIBLE);
+            visibleORnot=true;
+        }else {
+            seekBar.setVisibility(INVISIBLE);
+            visibleORnot=false;
+        }
+     }
+     public void Black(){
+        example.black();
+     }
+     public void Green(){
+        example.green();
+     }
+     public void ClearScreen(){
+         example.clear();
+     }
 }

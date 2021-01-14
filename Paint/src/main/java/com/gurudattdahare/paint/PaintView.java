@@ -1,150 +1,126 @@
 package com.gurudattdahare.paint;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.SeekBar;
 
-import androidx.annotation.Nullable;
+public class PaintView extends ViewGroup {
+    private SeekBar seekBar;
+    private DrawingView drawingView;
+    private Boolean visibleORnot=false;
+    private SeekBar.OnSeekBarChangeListener listener=new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            drawingView.brushsize(Float.valueOf(progress));
+        }
 
-import java.util.ArrayList;
-import java.util.List;
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
 
-public class PaintView extends View {
-    private Paint paint;
-    private Path path;
-    private float currntBrushsize=10f;
-    private int currentColor=Color.BLACK;
-    private List<Modal> list=new ArrayList<>();
-    private float h;
-    private float w;
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
     public PaintView(Context context) {
         super(context);
-        guru();
+        guru(context);
     }
 
-    public PaintView(Context context, @Nullable AttributeSet attrs) {
+    public PaintView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        guru();
+        guru(context);
     }
-    public  void  guru(){
-        paint=new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(10f);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        path=new Path();
-        AddList();
-
+    public void guru(Context context){
+        drawingView =new DrawingView(context);
+        addView(drawingView);
+        LayoutInflater.from(getContext()).inflate(R.layout.my_seekbaar_layout,this);
+        seekBar=findViewById(R.id.my_seekBar);
+        seekBar.setOnSeekBarChangeListener(listener);
+        seekBar.setVisibility(INVISIBLE);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawLine(0,h,w,h,paint);
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        int count=getChildCount();
+        Log.d("guru","count "+count);
+        int leftPadding=getPaddingLeft();
+        int rightPadding=getPaddingRight();
+        int topPadding=getPaddingTop();
+        int bottomPadding=getPaddingBottom();
 
-        Modal modal;
-        for (int i=0;i<list.size();i++){
-            modal=list.get(i);
-            canvas.drawPath(modal.getPath(),modal.getPaint());
+        int hight= getMeasuredHeight()-(topPadding+bottomPadding);
+        int width= getMeasuredWidth()-(leftPadding+rightPadding);
+
+        int startX=leftPadding;
+        int startY=topPadding;
+
+        for(int i=0;i<count;i++){
+            View child=getChildAt(i);
+            if(child.getVisibility()!=GONE){
+                if(i==0){
+                    child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
+                            MeasureSpec.makeMeasureSpec(hight* 11 / 12, MeasureSpec.AT_MOST));
+                    int childhight=child.getMeasuredHeight();
+                    int childwidth=child.getMeasuredWidth();
+                    child.layout(startX,startY,leftPadding+childwidth,topPadding+childhight);
+                    startX=startX+width/25;
+                    startY=startY+childhight+hight/48;
+                    //  example=findViewById(child.getId());
+
+                }else if(i==1)
+                {
+                    seekBar.measure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.AT_MOST),MeasureSpec.makeMeasureSpec(100,MeasureSpec.AT_MOST));
+                    seekBar.layout(0,30,width,30+100);
+                }
+                else {
+                    child.measure(MeasureSpec.makeMeasureSpec(2 * width / 25, MeasureSpec.AT_MOST),
+                            MeasureSpec.makeMeasureSpec(2 * hight / 48, MeasureSpec.AT_MOST));
+                    int childhight = child.getMeasuredHeight();
+                    int childwidth = child.getMeasuredWidth();
+                    child.layout(startX, startY, startX + childwidth, startY + childhight);
+                    startX = startX + 3 * width / 25;
+
+                }
+            }
         }
     }
+    public void Red()
+    {
+        drawingView.red();
+    }
+    public void Blue(){
+        drawingView.blue();
+    }
+    public void Yellow(){
+        drawingView.yellow();
+    }
+    public void Eresor(){
+        drawingView.eresor();
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float x=event.getX();
-        float y=event.getY();
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                path.moveTo(x,y);
-                invalidate();
-                break;
-             case MotionEvent.ACTION_MOVE:
-                 path.lineTo(x,y);
-                 invalidate();
-                 break;
+    }
+    public void BrushSize(){
+        if (!visibleORnot) {
+            seekBar.setVisibility(VISIBLE);
+            visibleORnot=true;
+        }else {
+            seekBar.setVisibility(INVISIBLE);
+            visibleORnot=false;
         }
-        return true;
     }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        h=getMeasuredHeight();
-        w=getMeasuredWidth();
+    public void Black(){
+        drawingView.black();
     }
-
-    public void NewPaint(float size,int color){
-        currentColor=color;
-        paint=new Paint();
-        paint.setColor(currentColor);
-        paint.setStrokeWidth(size);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-
-        path=new Path();
-        AddList();
+    public void Green(){
+        drawingView.green();
     }
-    public void AddList(){
-        Modal modal=new Modal(paint,path);
-        list.add(modal);
-    }
-    public void red(){
-
-        path=new Path();
-        NewPaint(currntBrushsize,Color.RED);
-        AddList();
-    }
-    public void blue(){
-
-        path=new Path();
-        NewPaint(currntBrushsize,Color.BLUE);
-        AddList();
-    }
-    public  void  yellow(){
-
-        path=new Path();
-        NewPaint(currntBrushsize,Color.YELLOW);
-        AddList();
-    }
-    public void green(){
-
-       path=new Path();
-       NewPaint(currntBrushsize,Color.GREEN);
-        AddList();
-    }
-    public void black(){
-
-        path=new Path();
-        NewPaint(currntBrushsize,Color.BLACK);
-        AddList();
-    }
-    public void Brown(){
-        path=new Path();
-        NewPaint(currntBrushsize,Integer.valueOf(Color.parseColor("#964B00")));
-        AddList();
-    }
-    public void eresor(){
-
-        path=new Path();
-        NewPaint(currntBrushsize,Color.WHITE);
-        AddList();
-    }
-    public void brushsize(Float size){
-        path =new Path();
-        currntBrushsize=size;
-        NewPaint(currntBrushsize,currentColor);
-        AddList();
-
-    }
-    public void clear(){
-        list.clear();
-        invalidate();
+    public void ClearScreen(){
+        drawingView.clear();
     }
 }

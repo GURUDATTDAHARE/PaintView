@@ -9,13 +9,13 @@ import android.widget.Button;
 import com.gurudattdahare.paint.PaintView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-   private example e;
+   private V e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        e=findViewById(R.id.paintview);
         Button b=findViewById(R.id.red);
-         e =findViewById(R.id.paintview);
        Button b2=findViewById(R.id.blue);
        Button b3=findViewById(R.id.green);
        Button b4=findViewById(R.id.yellow);
@@ -39,28 +39,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.red:
-                e.red();
+                e.Red();
                 break;
             case R.id.blue:
-                e.blue();
+                e.Blue();
                 break;
             case R.id.green:
-                e.green();
+                e.Green();
                 break;
             case R.id.yellow:
-                e.yellow();
+                e.Yellow();
                 break;
             case R.id.black:
-                e.black();
+                e.Black();
                 break;
             case R.id.eresor:
-                e.eresor();
+                e.Eresor();
                 break;
             case  R.id.clear:
-                e.clear();
+                e.ClearScreen();
                 break;
                 case R.id.size:
-              e.Brown();
+              e.BrushSize();
             break;
         }
     }

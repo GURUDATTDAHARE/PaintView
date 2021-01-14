@@ -1,5 +1,4 @@
-package com.gurudattdahare.paintview;
-
+package com.gurudattdahare.paint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,10 +10,8 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-
 import androidx.annotation.Nullable;
-public class example extends View {
+public class DrawingView extends View {
     private Paint paint;
     private  Paint b_paint;
     private Path path;
@@ -23,12 +20,12 @@ public class example extends View {
     private Bitmap bitmap;
     private Canvas myCanvas;
     private int h,w;
-    public example(Context context) {
+    public DrawingView(Context context) {
         super(context);
         guru();
     }
 
-    public example(Context context, @Nullable AttributeSet attrs) {
+    public DrawingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         guru();
     }
@@ -52,7 +49,7 @@ public class example extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawLine(0,h,w,h,b_paint);
-          canvas.drawBitmap(bitmap,0,0,null);
+        canvas.drawBitmap(bitmap,0,0,null);
         //super.onDraw(canvas);
     }
 
