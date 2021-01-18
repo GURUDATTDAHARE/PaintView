@@ -9,12 +9,12 @@ import android.widget.Button;
 import com.gurudattdahare.paint.PaintView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-   private V e;
+   private PaintView paintView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        e=findViewById(R.id.paintview);
+        paintView =findViewById(R.id.paintview);
         Button b=findViewById(R.id.red);
        Button b2=findViewById(R.id.blue);
        Button b3=findViewById(R.id.green);
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        Button b6=findViewById(R.id.eresor);
        Button b7 =findViewById(R.id.clear);
        Button b8=findViewById(R.id.size);
+
        b.setOnClickListener(this);
        b2.setOnClickListener(this);
        b3.setOnClickListener(this);
@@ -39,28 +40,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.red:
-                e.Red();
+                paintView.Red();
                 break;
             case R.id.blue:
-                e.Blue();
+                paintView.Blue();
                 break;
             case R.id.green:
-                e.Green();
+                paintView.Green();
                 break;
             case R.id.yellow:
-                e.Yellow();
+                paintView.Yellow();
                 break;
             case R.id.black:
-                e.Black();
+                paintView.Black();
                 break;
             case R.id.eresor:
-                e.Eresor();
+                paintView.Eresor();
                 break;
             case  R.id.clear:
-                e.ClearScreen();
+                paintView.ClearScreen();
                 break;
                 case R.id.size:
-              e.BrushSize();
+              paintView.BrushSize();
             break;
         }
     }

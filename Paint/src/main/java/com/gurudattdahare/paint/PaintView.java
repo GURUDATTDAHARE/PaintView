@@ -1,6 +1,7 @@
 package com.gurudattdahare.paint;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -101,8 +102,8 @@ public class PaintView extends ViewGroup {
     public void Yellow(){
         drawingView.yellow();
     }
-    public void Eresor(){
-        drawingView.eresor();
+    public void Ereser(){
+        drawingView.ereser();
 
     }
     public void BrushSize(){
@@ -122,5 +123,10 @@ public class PaintView extends ViewGroup {
     }
     public void ClearScreen(){
         drawingView.clear();
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 }

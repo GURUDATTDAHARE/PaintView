@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-        <com.gurudattdahare.paintview.V
+        <com.gurudattdahare.paint.PaintView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
             android:id="@+id/paintview"
@@ -49,20 +49,22 @@
             android:id="@+id/eresor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FBFBFB" />
+            android:background="@drawable/ereser" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/size"
-            android:background="@color/colorPrimary" />
+            android:background="@drawable/brush" />
+
+<!--   add other buttons  -->
 
         <Button
             android:id="@+id/clear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary" />
+            android:background="@drawable/clear" />
 
 
-    </com.gurudattdahare.paintview.V>
+    </com.gurudattdahare.paint.PaintView>
 </androidx.constraintlayout.widget.ConstraintLayout>

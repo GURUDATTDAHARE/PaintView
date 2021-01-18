@@ -99,7 +99,7 @@ public class DrawingView extends View {
     public void black(){
         NewPaint(currntBrushsize,Color.BLACK);
     }
-    public void eresor(){
+    public void ereser(){
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
     public void brushsize(Float size){
