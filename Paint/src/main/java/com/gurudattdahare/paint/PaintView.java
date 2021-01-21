@@ -7,28 +7,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
 public class PaintView extends ViewGroup {
     private SeekBar seekBar;
+    private ImageView brushSizePreview;
     private DrawingView drawingView;
-    private Boolean visibleORnot=false;
-    private SeekBar.OnSeekBarChangeListener listener=new SeekBar.OnSeekBarChangeListener() {
+    private Boolean visibleORnot = false;
+    int img_position_X, img_position_Y;
+    private SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             drawingView.brushsize(Float.valueOf(progress));
+            // change size of preview img
+            brushSizePreview.measure(MeasureSpec.makeMeasureSpec(progress + 5, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(progress + 5, MeasureSpec.EXACTLY));
+            brushSizePreview.requestLayout();
         }
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-
+            brushSizePreview.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-
+            brushSizePreview.setVisibility(View.GONE);
         }
     };
+
     public PaintView(Context context) {
         super(context);
         guru(context);
@@ -38,49 +45,59 @@ public class PaintView extends ViewGroup {
         super(context, attrs);
         guru(context);
     }
-    public void guru(Context context){
-        drawingView =new DrawingView(context);
+
+    public void guru(Context context) {
+        drawingView = new DrawingView(context);
         addView(drawingView);
-        LayoutInflater.from(getContext()).inflate(R.layout.my_seekbaar_layout,this);
-        seekBar=findViewById(R.id.my_seekBar);
+        LayoutInflater.from(getContext()).inflate(R.layout.my_seekbaar_layout, this);
+        seekBar = findViewById(R.id.my_seekBar);
         seekBar.setOnSeekBarChangeListener(listener);
         seekBar.setVisibility(INVISIBLE);
+
+        brushSizePreview = new ImageView(context);
+        brushSizePreview.setImageResource(R.drawable.ic_preview);
+        addView(brushSizePreview);
+        brushSizePreview.setVisibility(View.GONE);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        int count=getChildCount();
-        Log.d("guru","count "+count);
-        int leftPadding=getPaddingLeft();
-        int rightPadding=getPaddingRight();
-        int topPadding=getPaddingTop();
-        int bottomPadding=getPaddingBottom();
+        int count = getChildCount();
+        Log.d("guru", "count " + count);
+        int leftPadding = getPaddingLeft();
+        int rightPadding = getPaddingRight();
+        int topPadding = getPaddingTop();
+        int bottomPadding = getPaddingBottom();
 
-        int hight= getMeasuredHeight()-(topPadding+bottomPadding);
-        int width= getMeasuredWidth()-(leftPadding+rightPadding);
+        int hight = getMeasuredHeight() - (topPadding + bottomPadding);
+        int width = getMeasuredWidth() - (leftPadding + rightPadding);
 
-        int startX=leftPadding;
-        int startY=topPadding;
+        int startX = leftPadding;
+        int startY = topPadding;
 
-        for(int i=0;i<count;i++){
-            View child=getChildAt(i);
-            if(child.getVisibility()!=GONE){
-                if(i==0){
+        for (int i = 0; i < count; i++) {
+            View child = getChildAt(i);
+            if (child.getVisibility() != GONE) {
+                if (i == 0) {
                     child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
-                            MeasureSpec.makeMeasureSpec(hight* 11 / 12, MeasureSpec.AT_MOST));
-                    int childhight=child.getMeasuredHeight();
-                    int childwidth=child.getMeasuredWidth();
-                    child.layout(startX,startY,leftPadding+childwidth,topPadding+childhight);
-                    startX=startX+width/25;
-                    startY=startY+childhight+hight/48;
+                            MeasureSpec.makeMeasureSpec(hight * 11 / 12, MeasureSpec.AT_MOST));
+                    int childhight = child.getMeasuredHeight();
+                    int childwidth = child.getMeasuredWidth();
+                    child.layout(startX, startY, leftPadding + childwidth, topPadding + childhight);
+                    startX = startX + width / 25;
+                    startY = startY + childhight + hight / 48;
                     //  example=findViewById(child.getId());
 
-                }else if(i==1)
-                {
-                    seekBar.measure(MeasureSpec.makeMeasureSpec(width,MeasureSpec.AT_MOST),MeasureSpec.makeMeasureSpec(100,MeasureSpec.AT_MOST));
-                    seekBar.layout(0,30,width,30+100);
-                }
-                else {
+                } else if (i == 1) {
+                    seekBar.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST), MeasureSpec.makeMeasureSpec(100, MeasureSpec.AT_MOST));
+                    seekBar.layout(0, 30, width, 30 + 100);
+                } else if (i == 2) {
+                    int childhight = child.getMeasuredHeight();
+                    int childwidth = child.getMeasuredWidth();
+                    img_position_X = width / 2 - childwidth / 2;
+                    img_position_Y = hight / 2 - childhight / 2;
+                    brushSizePreview.layout(img_position_X, img_position_Y, img_position_X + childwidth, img_position_Y + childhight);
+                } else {
                     child.measure(MeasureSpec.makeMeasureSpec(2 * width / 25, MeasureSpec.AT_MOST),
                             MeasureSpec.makeMeasureSpec(2 * hight / 48, MeasureSpec.AT_MOST));
                     int childhight = child.getMeasuredHeight();
@@ -92,36 +109,43 @@ public class PaintView extends ViewGroup {
             }
         }
     }
-    public void Red()
-    {
+
+    public void Red() {
         drawingView.red();
     }
-    public void Blue(){
+
+    public void Blue() {
         drawingView.blue();
     }
-    public void Yellow(){
+
+    public void Yellow() {
         drawingView.yellow();
     }
-    public void Ereser(){
+
+    public void Ereser() {
         drawingView.ereser();
 
     }
-    public void BrushSize(){
+
+    public void BrushSize() {
         if (!visibleORnot) {
             seekBar.setVisibility(VISIBLE);
-            visibleORnot=true;
-        }else {
+            visibleORnot = true;
+        } else {
             seekBar.setVisibility(INVISIBLE);
-            visibleORnot=false;
+            visibleORnot = false;
         }
     }
-    public void Black(){
+
+    public void Black() {
         drawingView.black();
     }
-    public void Green(){
+
+    public void Green() {
         drawingView.green();
     }
-    public void ClearScreen(){
+
+    public void ClearScreen() {
         drawingView.clear();
     }
 

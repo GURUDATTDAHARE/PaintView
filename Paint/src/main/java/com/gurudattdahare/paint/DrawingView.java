@@ -1,4 +1,5 @@
 package com.gurudattdahare.paint;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,7 +11,9 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import androidx.annotation.Nullable;
+
 public class DrawingView extends View {
     private Paint paint;
     private  Paint b_paint;
