@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
 public class example extends View {
     private Paint paint;
     private  Paint b_paint;
