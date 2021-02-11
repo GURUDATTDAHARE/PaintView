@@ -4,6 +4,9 @@
         android:id="@+id/my_seekBar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:thumb="@drawable/seekbar_thumb"
+        android:progressDrawable="@drawable/seekbar_progress"
+
         />
 
 </merge>
