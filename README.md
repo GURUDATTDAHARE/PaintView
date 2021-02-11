@@ -1,4 +1,6 @@
-# PaintView:
+# PaintView:[![](https://jitpack.io/v/GURUDATTDAHARE/PaintView.svg)](https://jitpack.io/#GURUDATTDAHARE/PaintView)
+
+
 PaintView is a custom View class which extends the View class.it's provide an area on screen for drawing.
 
 ![my screen](https://media.giphy.com/media/9ohxJxGbDbMsi47aVz/giphy.gif)
@@ -19,7 +21,7 @@ Add it in your root build.gradle at the end of repositories:
   ---
   ```
   dependencies {
-	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.5'
+	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.7'
 	}
   ```
   ---
@@ -45,7 +47,8 @@ Add it in your root build.gradle at the end of repositories:
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+	android:background="@drawable/toolbar_background" >
 
         <Button
             android:id="@+id/red"
