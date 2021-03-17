@@ -21,18 +21,16 @@ Add it in your root build.gradle at the end of repositories:
   ---
   ```
   dependencies {
-	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.7'
+	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.8'
 	}
   ```
   ---
   3.implementation
   ---
    - add PaintView in your xml find and set an id.
-   - add buttons under the paintView.here we can add maximum 8 buttons.
-   - set click listener and call the methods of PaintView {Red(),Blue(),Yellow(),Green(),Black(),Ereser(),BrushSize(),ClearScreen()}
    ```xml
-   xml: 
-   <androidx.constraintlayout.widget.ConstraintLayout
+  <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -48,44 +46,89 @@ Add it in your root build.gradle at the end of repositories:
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-	android:background="@drawable/toolbar_background" >
-
-        <Button
-            android:id="@+id/red"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EE004B" />
-            
-   <!--   add other buttons  -->
-        
-  </com.gurudattdahare.paint.PaintView>
+            >
+    </com.gurudattdahare.paint.PaintView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
    ```
    ---
    ---
+   - if you want to do some extra things when buttons are clicked  then you neet to implement OnEventListener.
    ```java
      Java code:
      
      public class MainActivity extends AppCompatActivity {
-          private PaintView paintView;
-   
+   private PaintView paintView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        paintView =findViewById(R.id.paintview);
-        Button b=findViewById(R.id.red);
-         b.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               paintView.Red();
-           }
-       });
-       
-     // implement other buttons   
+        paintView = findViewById(R.id.paintview);
+        paintView.setEvantListenar(new OnEventsListener() {
+            @Override
+            public void OnRedClicked() {
+                Toast.makeText(getApplicationContext(),"red is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnBlueClicked() {
+                Toast.makeText(getApplicationContext(),"blue is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnYellowClicked() {
+                Toast.makeText(getApplicationContext(),"yellow is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnGreenClicked() {
+                Toast.makeText(getApplicationContext(),"green is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnBlackClicked() {
+                Toast.makeText(getApplicationContext(),"black is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnBrownClicked() {
+                Toast.makeText(getApplicationContext(),"brown is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnEraserClicked() {
+                Toast.makeText(getApplicationContext(),"eraser is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnClearClicked() {
+                Toast.makeText(getApplicationContext(),"clear screen is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnBrushSizeClicked() {
+                Toast.makeText(getApplicationContext(),"brush size button is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnUndoClicked() {
+                Toast.makeText(getApplicationContext(),"undo button is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnRedoclicked() {
+                Toast.makeText(getApplicationContext(),"redo button is clicked.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void OnSaveClicked(Bitmap bitmap) {
+                  // here you can save this bitmap as a .png format in your external storage.
+            }
+        });
+
     }
- }
+
+
+}
         
    ```
    ---
