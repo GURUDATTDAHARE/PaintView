@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-        <com.gurudattdahare.paintview.V
+        <com.gurudattdahare.paint.PaintView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
             android:id="@+id/paintview"
@@ -14,58 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/toolbar">
-
-        <Button
-            android:id="@+id/red"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EE004B" />
-
-        <Button
-            android:id="@+id/blue"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00CAEE" />
-
-        <Button
-            android:id="@+id/green"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#34EE00" />
-
-        <Button
-            android:id="@+id/yellow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#EEC600" />
-
-        <Button
-            android:id="@+id/black"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#0C0910" />
-
-        <Button
-            android:id="@+id/eresor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/ic_eraser" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/size"
-            android:background="@drawable/ic_paint_brush" />
-
-<!--   add other buttons  -->
-
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/ic_refresh" />
-
-
-    </com.gurudattdahare.paintview.V>
+            android:background="@drawable/toolbar_background">
+    </com.gurudattdahare.paint.PaintView>
 </androidx.constraintlayout.widget.ConstraintLayout>

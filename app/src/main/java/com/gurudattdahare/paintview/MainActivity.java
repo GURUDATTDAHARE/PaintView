@@ -1,67 +1,87 @@
 package com.gurudattdahare.paintview;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gurudattdahare.paint.EventManneger.OnEventsListener;
+import com.gurudattdahare.paint.PaintView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-   private V paintView;
+
+public class MainActivity extends AppCompatActivity {
+   private PaintView paintView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        paintView =findViewById(R.id.paintview);
-        Button b=findViewById(R.id.red);
-       Button b2=findViewById(R.id.blue);
-       Button b3=findViewById(R.id.green);
-       Button b4=findViewById(R.id.yellow);
-       Button b5=findViewById(R.id.black);
-       Button b6=findViewById(R.id.eresor);
-       Button b7 =findViewById(R.id.clear);
-       Button b8=findViewById(R.id.size);
+        paintView = findViewById(R.id.paintview);
+        paintView.setEvantListenar(new OnEventsListener() {
+            @Override
+            public void OnRedClicked() {
+ Toast.makeText(getApplicationContext(),"red .",Toast.LENGTH_SHORT).show();
+            }
 
-       b.setOnClickListener(this);
-       b2.setOnClickListener(this);
-       b3.setOnClickListener(this);
-       b4.setOnClickListener(this);
-       b5.setOnClickListener(this);
-       b6.setOnClickListener(this);
-       b7.setOnClickListener(this);
-       b8.setOnClickListener(this);
+            @Override
+            public void OnBlueClicked() {
 
+            }
+
+            @Override
+            public void OnYellowClicked() {
+
+            }
+
+            @Override
+            public void OnGreenClicked() {
+
+            }
+
+            @Override
+            public void OnBlackClicked() {
+
+            }
+
+            @Override
+            public void OnBrownClicked() {
+
+            }
+
+            @Override
+            public void OnEraserClicked() {
+
+            }
+
+            @Override
+            public void OnClearClicked() {
+
+            }
+
+            @Override
+            public void OnBrushSizeClicked() {
+
+            }
+
+            @Override
+            public void OnUndoClicked() {
+
+            }
+
+            @Override
+            public void OnRedoclicked() {
+
+            }
+
+            @Override
+            public void OnSaveClicked(Bitmap bitmap) {
+
+            }
+        });
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.red:
-                paintView.Red();
-                break;
-            case R.id.blue:
-                paintView.Blue();
-                break;
-            case R.id.green:
-                paintView.Green();
-                break;
-            case R.id.yellow:
-                paintView.Yellow();
-                break;
-            case R.id.black:
-                paintView.Black();
-                break;
-            case R.id.eresor:
-                paintView.Eresor();
-                break;
-            case  R.id.clear:
-                paintView.ClearScreen();
-                break;
-                case R.id.size:
-              paintView.BrushSize();
-            break;
-        }
-    }
+
 }
