@@ -1,10 +1,8 @@
 package com.gurudattdahare.paint;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,17 +15,18 @@ import android.widget.SeekBar;
 
 import com.gurudattdahare.paint.EventManneger.OnEventsListener;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class PaintView extends ViewGroup implements View.OnClickListener {
     private SeekBar seekBar;
     private ImageView brushSizePreview;
     private DrawingView drawingView;
-    private Boolean visibleORnot = false;
     int img_position_X, img_position_Y;
     // 0.0.8 version
     // ---------------->><<----------------
     private Button tool;
     private Boolean istoolOn=false;
-    private Button red,blue,green,yellow,black,brown,eraser,brush,refresh,undo,redo,save,cancle;
+    private Button red,blue,green,yellow,black,brown,eraser,brush,refresh,undo,redo,save,cancle,picker;
     private PopupWindow popupWindow;
     private int popupX;
     private int popupY;
@@ -51,6 +50,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             brushSizePreview.setVisibility(View.GONE);
+            seekBar.setVisibility(INVISIBLE);
         }
     };
 
@@ -80,7 +80,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
         addView(brushSizePreview);
         brushSizePreview.setVisibility(View.GONE);
 
-        initListenar();
+        initListener();
     }
 
     @Override
@@ -154,13 +154,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
     }
 
     private void BrushSize() {
-        if (!visibleORnot) {
             seekBar.setVisibility(VISIBLE);
-            visibleORnot = true;
-        } else {
-            seekBar.setVisibility(INVISIBLE);
-            visibleORnot = false;
-        }
     }
 
     private void Black() {
@@ -169,6 +163,9 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
 
     private void Green() {
         drawingView.green();
+    }
+    private void ColorPicker(int color){
+        drawingView.colorPicker(color);
     }
 
     private void ClearScreen() {
@@ -201,6 +198,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
                 brush = view.findViewById(R.id.brush_size_button);
                 refresh = view.findViewById(R.id.refresh_button);
                 cancle = view.findViewById(R.id.cancle_button);
+                picker=view.findViewById(R.id.color_chooser);
                 red.setOnClickListener(this);
                 blue.setOnClickListener(this);
                 green.setOnClickListener(this);
@@ -214,6 +212,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
                 brush.setOnClickListener(this);
                 refresh.setOnClickListener(this);
                 cancle.setOnClickListener(this);
+                picker.setOnClickListener(this);
                 popupWindow = new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 popupX = 465;
                 popupY = 1247;
@@ -278,9 +277,22 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
         }else  if(id==R.id.download_button){
             Bitmap bitmap=drawingView.getMainbitmap();
             onEventsListener.OnSaveClicked(bitmap);
+        }else if(id==R.id.color_chooser){
+            AmbilWarnaDialog colorDialog=new AmbilWarnaDialog(getContext(), drawingView.getCurrentColor(), new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                @Override
+                public void onCancel(AmbilWarnaDialog dialog) {
+
+                }
+
+                @Override
+                public void onOk(AmbilWarnaDialog dialog, int color) {
+                    ColorPicker(color);
+                }
+            });
+            colorDialog.show();
         }
     }
-    private void initListenar(){
+    private void initListener(){
         onEventsListener=new OnEventsListener() {
             @Override
             public void OnRedClicked() {
@@ -343,7 +355,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
             }
         };
     }
-    public void setEvantListenar(OnEventsListener onEventsListener) {
+    public void setEvantListener(OnEventsListener onEventsListener) {
         this.onEventsListener = onEventsListener;
     }
 }

@@ -22,6 +22,7 @@ public class DrawingView extends View {
     private  Paint b_paint;
     private Path path;
     private float currntBrushsize=10f;
+
     private int currentColor=Color.BLACK;
     private Bitmap mainbitmap;//current bitmap
     private Canvas myCanvas;
@@ -140,6 +141,10 @@ public class DrawingView extends View {
         NewPaint(currntBrushsize,Color.rgb(210,105,30));
         resetClearflag();
     }
+    public void colorPicker(int color){
+        NewPaint(currntBrushsize,color);
+        resetClearflag();
+    }
     public void ereser(){
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         resetClearflag();
@@ -202,6 +207,9 @@ public class DrawingView extends View {
     }
     public Bitmap getMainbitmap(){
         return mainbitmap;
+    }
+    public int getCurrentColor() {
+        return currentColor;
     }
 
     @Override
