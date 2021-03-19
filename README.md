@@ -23,7 +23,7 @@ Add it in your root build.gradle at the end of repositories:
   ---
   ```
   dependencies {
-	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.9'
+	        implementation 'com.github.GURUDATTDAHARE:PaintView:<latest version>'
 	}
   ```
   ---
