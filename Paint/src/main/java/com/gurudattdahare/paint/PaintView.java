@@ -24,9 +24,9 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
     int img_position_X, img_position_Y;
     // 0.0.8 version
     // ---------------->><<----------------
-    private Button tool;
+    private ImageView tool;
     private Boolean istoolOn=false;
-    private Button red,blue,green,yellow,black,brown,eraser,brush,refresh,undo,redo,save,cancle,picker;
+    private ImageView red,blue,green,yellow,black,brown,eraser,brush,refresh,undo,redo,save,cancle,picker;
     private PopupWindow popupWindow;
     private int popupX;
     private int popupY;
@@ -120,7 +120,7 @@ public class PaintView extends ViewGroup implements View.OnClickListener {
                 } else {
                     //                    Tool button  its width is langth of 5th part of width  and  hight is langth of 10th part of hight
                     child.measure(MeasureSpec.makeMeasureSpec( width / 5, MeasureSpec.EXACTLY),
-                            MeasureSpec.makeMeasureSpec( hight / 10, MeasureSpec.AT_MOST));
+                            MeasureSpec.makeMeasureSpec( hight /15, MeasureSpec.EXACTLY));
                     int childhight = child.getMeasuredHeight();
                     int childwidth = child.getMeasuredWidth();
                     startX=width-childwidth-50;

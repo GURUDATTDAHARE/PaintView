@@ -7,7 +7,7 @@
     android:background="@drawable/toolbar_background">
 
 
-    <Button
+    <ImageView
         android:id="@+id/brush_size_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -16,23 +16,23 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/ic_brush"
+        android:src="@drawable/ic_brush"
         app:layout_constraintEnd_toStartOf="@+id/refresh_button"
         app:layout_constraintStart_toEndOf="@+id/eraser_button"
         app:layout_constraintTop_toBottomOf="@+id/black_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/eraser_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/ic_eraser"
+        android:src="@drawable/ic_eraser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yellow_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/refresh_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -41,45 +41,45 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/ic_refresh"
+        android:src="@drawable/ic_refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/brush_size_button"
         app:layout_constraintTop_toBottomOf="@+id/brown_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/red_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#EE0030"
+        android:src="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/green_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#34EE00"
+        android:src="@color/green"
         app:layout_constraintStart_toEndOf="@+id/red_button"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/blue_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#4E56E6"
+        android:src="@color/blue"
         app:layout_constraintStart_toEndOf="@+id/green_button"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/color_chooser"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -89,56 +89,56 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:includeFontPadding="false"
-        android:background="@drawable/colorpicker"
+        android:src="@drawable/colorpicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/blue_button"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/yellow_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#F4FF81"
+        android:src="@color/yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/red_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/black_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#0D0C0E"
+        android:src="@color/black"
         app:layout_constraintStart_toEndOf="@+id/yellow_button"
         app:layout_constraintTop_toBottomOf="@+id/green_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/brown_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#F19B4F"
+        android:src="@color/brown"
         app:layout_constraintStart_toEndOf="@+id/black_button"
         app:layout_constraintTop_toBottomOf="@+id/blue_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/undo_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/ic_baseline_arrow_back"
+        android:src="@drawable/ic_baseline_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eraser_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/download_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -146,12 +146,12 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
 
-        android:background="@drawable/ic_baseline_arrow_downward"
+        android:src="@drawable/ic_baseline_arrow_downward"
 
         app:layout_constraintStart_toEndOf="@+id/undo_button"
         app:layout_constraintTop_toBottomOf="@+id/brush_size_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/redo"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -160,20 +160,18 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/ic_baseline_arrow_forward"
+        android:src="@drawable/ic_baseline_arrow_forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/download_button"
         app:layout_constraintTop_toBottomOf="@+id/refresh_button" />
 
-    <Button
+    <ImageView
         android:id="@+id/cancle_button"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/cancle"
-        android:background="#6CF3CC"
-        android:textSize="15sp"
+        android:src="@drawable/ic_cancle_button_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

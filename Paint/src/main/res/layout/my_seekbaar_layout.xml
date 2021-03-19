@@ -8,11 +8,11 @@
         android:progressDrawable="@drawable/seekbar_progress"
 
         />
-    <Button
+    <ImageView
         android:id="@+id/tool_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/tool_icon"
-        android:textSize="15sp" />
+         />
 
 </merge>

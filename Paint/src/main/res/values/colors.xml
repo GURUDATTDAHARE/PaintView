@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#EE0030</color>
+    <color name="blue">#4E56E6</color>
+    <color name="green">#34EE00</color>
+    <color name="yellow">#F4FF81</color>
+    <color name="black">#0D0C0E</color>
+    <color name="brown">#F19B4F</color>
+    <color name="cancle_button">#6CF3CC</color>
+</resources>
