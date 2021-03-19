@@ -3,7 +3,9 @@
 
 PaintView is a custom View class which extends the View class.it's provide an area on screen for drawing.
 
-![my screen](https://media.giphy.com/media/9ohxJxGbDbMsi47aVz/giphy.gif)
+![my screen](https://media.giphy.com/media/h9owDgxPfoBmxgXKbO/giphy.gif)  ![my screen](https://media.giphy.com/media/6duWCHAuDl3xqsx9d1/giphy.gif) 
+
+
 # How to use:
 1.Add repositories
 ---
@@ -21,7 +23,7 @@ Add it in your root build.gradle at the end of repositories:
   ---
   ```
   dependencies {
-	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.8'
+	        implementation 'com.github.GURUDATTDAHARE:PaintView:0.0.9'
 	}
   ```
   ---
